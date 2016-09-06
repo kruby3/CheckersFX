@@ -1,0 +1,105 @@
+	class selectBorderHandler implements EventHandler<MouseEvent> {
+		@Override
+		public void handle(MouseEvent e) {
+			int depth = 70; //Setting the uniform variable for the glow width and height
+			 
+			DropShadow borderGlow= new DropShadow();
+			borderGlow.setOffsetY(0f);
+			borderGlow.setOffsetX(0f);
+			borderGlow.setColor(Color.YELLOW);
+			borderGlow.setWidth(depth);
+			borderGlow.setHeight(depth);
+			
+			mouseX = e.getSceneX();
+			mouseY = e.getSceneY();
+			
+			((Node) e.getSource()).setEffect(borderGlow); //Apply the borderGlow effect to the JavaFX node
+		}
+	}
+	
+	class deselectBorderHandler implements EventHandler<MouseEvent> {
+		@Override
+		public void handle (MouseEvent e) {
+			if (selected == false){
+				((Node) e.getSource()).setEffect(null);
+			}
+		}
+	}
+	
+	class pieceSelectedHandler implements EventHandler<MouseEvent> {
+		@Override
+		public void handle (MouseEvent e) {
+			selected = !selected;
+			selectSquare();
+		}
+		
+		
+		
+		
+		
+		
+	public void selectSquare() {
+		boolean placed = false;
+		Square startSquare = currentSqr;
+		Position mousePos = Chess.getMousePos();
+		while (!placed && selected) {
+			if (Board.findSquare(mousePos) != currentSqr) {
+				System.out.println("moving");
+				move(Board.findSquare(mousePos));
+			} 
+		}
+	}
+	
+	
+	
+	
+	
+	CheckerPieceMoves move = getMoveType(finalSqr);
+		
+		int i_x = getCurrentSqr().getPos().getX();
+		int i_y = getCurrentSqr().getPos().getY();
+		int f_x = finalSqr.getPos().getX();
+		int f_y = finalSqr.getPos().getY();
+		Square captureSqr;
+		
+		switch (move) {
+			case INVALID:
+				System.out.println("invalid");
+				break;
+			case DOUBLEMOVE:
+				System.out.println("Double Move");
+				if (f_y < i_y){
+					if (f_x > i_x) {
+						captureSqr = b.getSquareList()[finalSqr.getPos().getX() - 1][finalSqr.getPos().getY() + 1];
+					} else {
+						captureSqr = b.getSquareList()[finalSqr.getPos().getX() + 1][finalSqr.getPos().getY() + 1];
+					}
+				} else {
+					if (f_x > i_x) {
+						captureSqr = b.getSquareList()[getCurrentSqr().getPos().getX() + 1][getCurrentSqr().getPos().getY() + 1];
+					} else {
+						captureSqr = b.getSquareList()[getCurrentSqr().getPos().getX() - 1][getCurrentSqr().getPos().getY() + 1];
+					}
+				}
+				System.out.println("capturesqr" + captureSqr);
+				if (captureSqr.isFull()) {
+					System.out.println("Capture sqr full");
+					Piece capturePiece = captureSqr.getMyPiece();
+					
+					if (capturePiece.getMyPlayer() != getMyPlayer()){
+						captureSqr.removePiece();
+						System.out.println("removed piece");
+						getMyPlayer().addToScore(1);
+					} else {
+						System.out.println("same piece");
+						break;
+					}
+					
+				}
+			case SINGLEMOVE:
+				System.out.println("Single Move");
+				getCurrentSqr().removePiece();
+				finalSqr.addPiece(this);
+				setCurrentSqr(finalSqr);
+				if (getCurrentSqr().getPos().get)
+				CheckerMode.nextTurn();
