@@ -47,7 +47,7 @@ public abstract class GameMode {
 	 * @param numPlayers the numPlayers to set
 	 */
 	public void setNumPlayers(int numPlayers) {
-		this.numPlayers = numPlayers;
+		GameMode.numPlayers = numPlayers;
 	}
 
 	/**
@@ -78,7 +78,7 @@ public abstract class GameMode {
 	 * @param playerArray the playerArray to set
 	 */
 	public void setPlayerArray(Player[] playerArray) {
-		this.playerArray = playerArray;
+		GameMode.playerArray = playerArray;
 	}
 
 
@@ -94,7 +94,7 @@ public abstract class GameMode {
 	 * @param currentPlayer the currentPlayer to set
 	 */
 	public void setCurrentPlayer(Player currentPlayer) {
-		this.currentPlayer = currentPlayer;
+		GameMode.currentPlayer = currentPlayer;
 	}
 
 
@@ -110,7 +110,7 @@ public abstract class GameMode {
 	 * @param numTurns the numTurns to set
 	 */
 	public void setNumTurns(int numTurns) {
-		this.numTurns = numTurns;
+		GameMode.numTurns = numTurns;
 	}
 	
 	private void addPlayers() {

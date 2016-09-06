@@ -19,7 +19,7 @@ public class Square {
 	 * @param dark
 	 */
 	public Square(int x, int y, boolean dark) {
-		sqr = new Rectangle(x * Chess.SQUARE_SIZE, y * Chess.SQUARE_SIZE, Chess.SQUARE_SIZE, Chess.SQUARE_SIZE);
+		sqr = new Rectangle(x * Checkers.SQUARE_SIZE, y * Checkers.SQUARE_SIZE, Checkers.SQUARE_SIZE, Checkers.SQUARE_SIZE);
 		pos = new Position(x, y);
 		endPos = updateEndPos();
 		squarePane = new StackPane();
@@ -46,11 +46,7 @@ public class Square {
 	 * @param p position to be checked
 	 */
 	public boolean isInSquare(Position p) {
-		if (p.getX() >= pos.getX() && p.getY() >= pos.getY() && p.getX() <= endPos.getX() && p.getY() <= endPos.getY()) {
-			return true;
-		} else {
-			return false;
-		}
+        return p.getX() >= pos.getX() && p.getY() >= pos.getY() && p.getX() <= endPos.getX() && p.getY() <= endPos.getY();
 	}
 	
 	/**
@@ -129,7 +125,7 @@ public class Square {
 	 * Updates end position (lower right corner) of square
 	 */
 	private Position updateEndPos() {
-		return new Position( pos.getX() + Chess.SQUARE_SIZE , pos.getY() + Chess.SQUARE_SIZE);
+		return new Position( pos.getX() + Checkers.SQUARE_SIZE , pos.getY() + Checkers.SQUARE_SIZE);
 	}
 	
 	/**

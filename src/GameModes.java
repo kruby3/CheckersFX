@@ -1,4 +1,4 @@
 
 public enum GameModes {
-	CHECKERS, CHESS, NONE;
+	CHECKERS, CHESS, NONE
 }

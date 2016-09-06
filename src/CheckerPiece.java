@@ -45,12 +45,8 @@ public class CheckerPiece extends Piece {
 		System.out.println(validDoubleCaptureMove(m,sqrList));
 		if (!m.isDiagonal()){
 			return false;
-		} else if (correctDirection(m) && (validCaptureMove(m,sqrList) || validDoubleCaptureMove(m,sqrList) || m.getLength() == 1)){
-			
-			return true;
-		} else {
-			return false;
-		}
+		} else
+			return correctDirection(m) && (validCaptureMove(m, sqrList) || validDoubleCaptureMove(m, sqrList) || m.getLength() == 1);
 	}
 	
 	private boolean correctDirection(Move m){
@@ -110,7 +106,7 @@ public class CheckerPiece extends Piece {
 		}
 		
 		if ((getMyPlayer().isPlayer1() && (finalSqr.getPos().getY() == 0))
-				|| (!(getMyPlayer().isPlayer1()) && finalSqr.getPos().getY() == Chess.BOARD_SIZE - 1)){
+				|| (!(getMyPlayer().isPlayer1()) && finalSqr.getPos().getY() == Checkers.BOARD_SIZE - 1)){
 			setKing(true);
 			updateState();
 		}

@@ -7,7 +7,7 @@ public class Board {
 	
 	public Board() {
 		boardPane = new GridPane();
-		squareList = new Square[Chess.BOARD_SIZE][Chess.BOARD_SIZE];
+		squareList = new Square[Checkers.BOARD_SIZE][Checkers.BOARD_SIZE];
 		setupBoard();
 	}
 	
@@ -16,8 +16,8 @@ public class Board {
 	 */
 	private void setupBoard() {
 		boolean dark = false;
-		for (int i = 0; i < Chess.BOARD_SIZE; i++) {
-			for (int j = 0; j < Chess.BOARD_SIZE; j++) {
+		for (int i = 0; i < Checkers.BOARD_SIZE; i++) {
+			for (int j = 0; j < Checkers.BOARD_SIZE; j++) {
 				squareList[i][j] = new Square(i, j, dark);
 				boardPane.add(squareList[i][j].getSquarePane(), i, j);
 				dark = !dark;
@@ -35,7 +35,7 @@ public class Board {
 		if (!p.isInBoard(this)) {
 			return null;
 		} else {
-			return squareList[p.getX() / Chess.SQUARE_SIZE][p.getY()/ Chess.SQUARE_SIZE];
+			return squareList[p.getX() / Checkers.SQUARE_SIZE][p.getY()/ Checkers.SQUARE_SIZE];
 		}
 	
 	}
